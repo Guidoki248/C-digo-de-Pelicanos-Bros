@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#0f2320">
+  <meta name="robots" content="noindex, nofollow">
+  <title>Panel de administración · Pelícanos Bros</title>
+  <meta name="description" content="Panel de administración de Pelícanos Bros: pedidos, pagos, horas de recojo, cocina, clientes y menú.">
+  <link rel="icon" href="img/logo.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,700;9..144,900&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/estilos.css">
+</head>
+<body class="admin-cuerpo">
+
+  <!-- LOGIN ADMIN -->
+  <div class="admin-login" id="vistaLogin">
+    <section class="admin-login-marca">
+      <a class="marca marca-clara" href="index.html">
+        <img src="img/logo.svg" alt="" width="50" height="50">
+        <span class="marca-texto">
+          <strong>Pelícanos Bros</strong>
+          <span>Panel de administración</span>
+        </span>
+      </a>
+      <div class="login-marca-texto">
+        <span class="sobre sobre-claro">Del caos manual a la claridad digital</span>
+        <h1>Todo tu negocio,<br>en una sola pantalla.</h1>
+        <p>Pedidos, pagos, horas de recojo, comandas de cocina, clientes y disponibilidad del menú. Sin cuadernos ni cálculos mentales.</p>
+        <ul class="lista-check lista-clara">
+          <li>Ve qué pidió cada cliente y a qué hora lo hizo.</li>
+          <li>Confirma si pagó o queda pendiente.</li>
+          <li>Organiza la cocina por hora de recojo.</li>
+          <li>Actualiza precios y productos agotados.</li>
+        </ul>
+      </div>
+      <div class="login-marca-pie">
+        <span>Demo académica · UNAM</span>
+        <a href="index.html">← Volver a la tienda</a>
+      </div>
+    </section>
+
+    <section class="admin-login-form">
+      <div class="login-caja">
+        <span class="sobre">Acceso restringido</span>
+        <h2>Ingresa al panel</h2>
+        <p>Usa tu cuenta de administrador. Las cuentas de cliente no tienen acceso a esta interfaz.</p>
+
+        <form id="formAdminLogin" novalidate>
+          <div class="campo">
+            <label for="adminUsuario">Correo o usuario</label>
+            <input type="text" id="adminUsuario" autocomplete="username" placeholder="admin" required>
+          </div>
+          <div class="campo">
+            <label for="adminPassword">Contraseña</label>
+            <input type="password" id="adminPassword" autocomplete="current-password" placeholder="Tu contraseña" required>
+          </div>
+          <p class="mensaje-error" id="errorAdminLogin" hidden></p>
+          <button type="submit" class="btn btn-primario btn-bloque btn-grande">Entrar al panel</button>
+        </form>
+
+        <div class="demo-credenciales">
+          <strong>Credenciales demo</strong>
+          <p>Usuario <b>admin</b> · Contraseña <b>Admin2026*</b></p>
+          <button type="button" class="btn btn-texto btn-chico" id="btnRellenarDemo">Rellenar automáticamente</button>
+        </div>
+
+        <p class="login-nota">🔒 Demo: los datos se guardan en este navegador. No uses contraseñas reales.</p>
+      </div>
+    </section>
+  </div>
+
+  <!-- PANEL -->
+  <div class="admin-panel" id="vistaPanel" hidden>
+    <aside class="admin-lateral">
+      <a class="marca marca-clara" href="index.html">
+        <img src="img/logo.svg" alt="" width="46" height="46">
+        <span class="marca-texto">
+          <strong>Pelícanos Bros</strong>
+          <span>Administración</span>
+        </span>
+      </a>
+
+      <nav class="admin-nav" aria-label="Secciones del panel">
+        <button type="button" data-panel="resumen" class="activo"><span aria-hidden="true">📊</span> Resumen</button>
+        <button type="button" data-panel="pedidos"><span aria-hidden="true">🧾</span> Pedidos <span class="nav-badge" id="badgePedidos">0</span></button>
+        <button type="button" data-panel="cocina"><span aria-hidden="true">🔥</span> Cocina</button>
+        <button type="button" data-panel="clientes"><span aria-hidden="true">👥</span> Clientes</button>
+        <button type="button" data-panel="menu"><span aria-hidden="true">🍗</span> Menú</button>
+      </nav>
+
+      <div class="admin-lateral-pie">
+        <div class="admin-usuario">
+          <span class="avatar" id="adminAvatar">A</span>
+          <div><strong id="adminNombre">Administrador</strong><small>Administrador</small></div>
+        </div>
+        <button type="button" class="btn btn-fantasma btn-chico" data-admin-logout>Salir</button>
+        <a href="index.html" class="admin-volver">← Ver tienda</a>
+      </div>
+    </aside>
+
+    <main class="admin-contenido">
+      <header class="admin-cabecera">
+        <div>
+          <span class="sobre" id="adminSobre">Panel</span>
+          <h1 id="adminTitulo">Resumen del día</h1>
+        </div>
+        <div class="admin-cabecera-acciones">
+          <span class="admin-fecha" id="adminFecha"></span>
+          <button type="button" class="btn btn-fantasma btn-chico" id="btnRefrescar">↻ Actualizar</button>
+        </div>
+      </header>
+
+      <!-- RESUMEN -->
+      <section data-panel-contenido="resumen">
+        <div class="kpis" id="kpis"></div>
+        <div class="admin-grid-2">
+          <div class="panel-caja">
+            <div class="panel-caja-cabecera">
+              <h2>Próximos recojos</h2>
+              <span class="pista">Ordenados por hora</span>
+            </div>
+            <div id="proximosRecojos" class="lista-recojos"></div>
+          </div>
+          <div class="panel-caja">
+            <div class="panel-caja-cabecera">
+              <h2>Últimos pedidos</h2>
+              <button type="button" class="btn btn-texto btn-chico" data-ir-panel="pedidos">Ver todos →</button>
+            </div>
+            <div id="ultimosPedidos" class="lista-ultimos"></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- PEDIDOS -->
+      <section data-panel-contenido="pedidos" hidden>
+        <div class="filtros-admin">
+          <input type="search" id="filtroTexto" placeholder="Buscar código, cliente, correo o teléfono..." aria-label="Buscar pedidos">
+          <select id="filtroEstado" aria-label="Filtrar por estado">
+            <option value="">Todos los estados</option>
+            <option value="pendiente">Pedido recibido</option>
+            <option value="en_preparacion">En preparación</option>
+            <option value="listo">Listo para recoger</option>
+            <option value="entregado">Entregado</option>
+            <option value="cancelado">Cancelado</option>
+          </select>
+          <select id="filtroPago" aria-label="Filtrar por pago">
+            <option value="">Todos los pagos</option>
+            <option value="pendiente">Pago pendiente</option>
+            <option value="pagado">Pagado</option>
+          </select>
+          <input type="date" id="filtroFecha" aria-label="Filtrar por fecha de recojo">
+          <button type="button" class="btn btn-fantasma btn-chico" id="btnLimpiarFiltros">Limpiar</button>
+          <button type="button" class="btn btn-mango btn-chico" id="btnExportar">⬇ Exportar CSV</button>
+        </div>
+        <div class="tabla-envoltura">
+          <table class="tabla-admin">
+            <thead>
+              <tr>
+                <th>Código / pedido</th>
+                <th>Cliente</th>
+                <th>Recojo</th>
+                <th>Total</th>
+                <th>Pago</th>
+                <th>Estado</th>
+                <th><span class="sr-only">Acciones</span></th>
+              </tr>
+            </thead>
+            <tbody id="tablaPedidos"></tbody>
+          </table>
+        </div>
+        <p class="tabla-pie" id="contadorPedidos"></p>
+      </section>
+
+      <!-- COCINA -->
+      <section data-panel-contenido="cocina" hidden>
+        <div class="cocina-cabecera">
+          <p>Comandas activas ordenadas por hora de recojo. Cambia el estado con un clic: la tienda y el cliente lo ven al instante.</p>
+          <div class="cocina-leyenda">
+            <span><b class="punto punto-mango"></b> Por preparar</span>
+            <span><b class="punto punto-azul"></b> En preparación</span>
+            <span><b class="punto punto-verde"></b> Listos</span>
+          </div>
+        </div>
+        <div class="cocina-tablero" id="tableroCocina"></div>
+      </section>
+
+      <!-- CLIENTES -->
+      <section data-panel-contenido="clientes" hidden>
+        <div class="filtros-admin">
+          <input type="search" id="filtroClientes" placeholder="Buscar cliente por nombre, correo o teléfono..." aria-label="Buscar clientes">
+        </div>
+        <div class="tabla-envoltura">
+          <table class="tabla-admin">
+            <thead>
+              <tr>
+                <th>Cliente</th>
+                <th>Contacto</th>
+                <th>Usuario</th>
+                <th>Pedidos</th>
+                <th>Total pagado</th>
+                <th>Último pedido</th>
+                <th><span class="sr-only">Acciones</span></th>
+              </tr>
+            </thead>
+            <tbody id="tablaClientes"></tbody>
+          </table>
+        </div>
+        <p class="tabla-pie" id="contadorClientes"></p>
+      </section>
+
+      <!-- MENÚ -->
+      <section data-panel-contenido="menu" hidden>
+        <div class="menu-admin-cabecera">
+          <p>Edita el precio base y la disponibilidad. Los cambios se reflejan en la tienda al instante y no alteran los pedidos ya registrados.</p>
+          <button type="button" class="btn btn-fantasma btn-chico" id="btnRestaurarMenu">Restaurar menú base</button>
+        </div>
+        <div class="menu-admin-grid" id="menuAdmin"></div>
+        <p class="tabla-pie">El precio base incluye arroz, papa, ensalada y cremas. Los descuentos y extras se calculan automáticamente en la tienda.</p>
+      </section>
+    </main>
+  </div>
+
+  <!-- MODAL PEDIDO -->
+  <div class="modal" id="modalPedido" role="dialog" aria-modal="true" aria-labelledby="tituloPedido" aria-hidden="true">
+    <div class="modal-caja modal-ancho">
+      <button type="button" class="cerrar" data-cerrar aria-label="Cerrar">✕</button>
+      <div id="contenidoPedido"></div>
+    </div>
+  </div>
+
+  <!-- MODAL CLIENTE -->
+  <div class="modal" id="modalCliente" role="dialog" aria-modal="true" aria-labelledby="tituloCliente" aria-hidden="true">
+    <div class="modal-caja modal-ancho">
+      <button type="button" class="cerrar" data-cerrar aria-label="Cerrar">✕</button>
+      <div id="contenidoCliente"></div>
+    </div>
+  </div>
+
+  <div class="toasts" id="toasts" aria-live="polite" aria-atomic="false"></div>
+
+  <script src="js/datos.js"></script>
+  <script src="js/ui.js"></script>
+  <script src="js/admin.js"></script>
+</body>
+</html>

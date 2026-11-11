@@ -1,0 +1,512 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#0b1715">
+  <title>Presentación · Pelícanos Bros | Del caos manual a la claridad digital</title>
+  <meta name="description" content="Presentación académica del proyecto Pelícanos Bros: análisis AS-IS, blueprint de transición y sistema web de pedidos con recojo en tienda.">
+  <link rel="icon" href="img/logo.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,700;9..144,900&family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/presentacion.css">
+</head>
+<body>
+
+  <header class="pres-barra">
+    <a class="pres-marca" href="index.html" aria-label="Volver a la tienda Pelícanos Bros">
+      <img src="img/logo.svg" alt="" width="40" height="40">
+      <span>
+        <strong>Pelícanos Bros</strong>
+        <span>Proyecto de Ingeniería de Software · UNAM</span>
+      </span>
+    </a>
+    <div class="pres-acciones">
+      <a class="btn" href="index.html">🛍️ <span>Ver la app</span></a>
+      <a class="btn" href="documentacion.html">📄 <span>Documentación</span></a>
+      <button type="button" class="btn" id="btnImprimir" title="Imprimir o guardar como PDF">🖨️ <span>Imprimir</span></button>
+    </div>
+  </header>
+
+  <main class="pres-escenario" id="escenario" aria-live="polite">
+
+    <!-- 1 · PORTADA -->
+    <section class="slide activa" data-slide="0" aria-label="Portada">
+      <div class="slide-inner">
+        <div class="portada-grid">
+          <div class="portada-texto">
+            <span class="sobre">Ingeniería de Software · UNAM · 2026</span>
+            <h1>Del caos manual<br>a la <em>claridad digital</em>.</h1>
+            <p class="slide-sub">Análisis AS-IS y blueprint de transición para el proceso de ventas y pedidos de <strong>Pelícanos Bros</strong>. Una propuesta que digitaliza la toma de pedidos sin alterar la cocina artesanal.</p>
+            <div class="portada-meta">
+              <div><span>Estudiante</span><strong>Guido David Panca Escarcena</strong></div>
+              <div><span>Docente</span><strong>Dr. Alexander Morales Gonzales</strong></div>
+              <div><span>Curso</span><strong>Ingeniería de Software</strong></div>
+            </div>
+          </div>
+          <div class="portada-foto">
+            <span class="portada-etiqueta">Hecho al carbón</span>
+            <img src="img/platos/pollo.jpg" alt="Pelícano de pollo con arroz, papas fritas, ensalada y cremas de la casa">
+            <span class="portada-sello">S/ 14.00 · Pelícano completo</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 2 · PROBLEMA -->
+    <section class="slide" data-slide="1" aria-label="El punto de partida">
+      <div class="slide-inner">
+        <span class="sobre">El punto de partida</span>
+        <h2>Una operación que dependía<br>de la memoria del cajero.</h2>
+        <p class="slide-sub">El flujo era 100% presencial y manual. El cajero concentraba la consulta del menú, el cálculo del importe, el cobro, el kardex y la comunicación con cocina. En horas pico, ese diseño se rompe.</p>
+        <div class="grid-4">
+          <article class="tarjeta">
+            <span class="tarjeta-icono" aria-hidden="true">👀</span>
+            <h3>Consultas a ciegas</h3>
+            <p>Menú y disponibilidad se verificaban mentalmente o yendo a mirar la cocina, pedido tras pedido.</p>
+          </article>
+          <article class="tarjeta">
+            <span class="tarjeta-icono" aria-hidden="true">🧮</span>
+            <h3>Cálculos mentales</h3>
+            <p>El total se sumaba a mano. Cada operación abría la puerta a errores de cobro y pérdidas.</p>
+          </article>
+          <article class="tarjeta">
+            <span class="tarjeta-icono" aria-hidden="true">📒</span>
+            <h3>Kardex manual</h3>
+            <p>Las existencias se descontaban en papel después de cada venta. Con fila, el registro se omitía.</p>
+          </article>
+          <article class="tarjeta">
+            <span class="tarjeta-icono" aria-hidden="true">📣</span>
+            <h3>Comandas verbales</h3>
+            <p>La orden llegaba a cocina a gritos o en papel, generando confusiones y reprocesos.</p>
+          </article>
+        </div>
+        <p class="slide-sub"><strong>Dato clave del análisis:</strong> el cajero soportaba cerca del 80% de la carga cognitiva del proceso.</p>
+      </div>
+    </section>
+
+    <!-- 3 · AS-IS -->
+    <section class="slide slide-compacta" data-slide="2" aria-label="Flujo AS-IS">
+      <div class="slide-inner">
+        <span class="sobre">Diagnóstico AS-IS</span>
+        <h2>Así se vendía antes.</h2>
+        <p class="slide-sub">Un recorrido lineal con dos puntos críticos: la verificación de disponibilidad y el cierre administrativo de la venta.</p>
+        <div class="flujo">
+          <div class="flujo-paso"><span>01</span><strong>Solicitud</strong><small>El cliente pide plato y cantidad.</small></div>
+          <div class="flujo-paso"><span>02</span><strong>Consulta manual</strong><small>Menú y stock “de memoria”.</small></div>
+          <div class="flujo-paso"><span>03</span><strong>¿Disponible?</strong><small>Si no hay, termina sin venta.</small></div>
+          <div class="flujo-paso"><span>04</span><strong>Cálculo mental</strong><small>Importe comunicado al cliente.</small></div>
+          <div class="flujo-paso"><span>05</span><strong>Pago</strong><small>Efectivo en el mostrador.</small></div>
+          <div class="flujo-paso"><span>06</span><strong>Registro en papel</strong><small>Venta y kardex manual.</small></div>
+          <div class="flujo-paso"><span>07</span><strong>Comanda verbal</strong><small>La orden va a cocina.</small></div>
+          <div class="flujo-paso"><span>08</span><strong>Preparación</strong><small>El cocinero produce el plato.</small></div>
+          <div class="flujo-paso"><span>09</span><strong>Entrega</strong><small>Fin del ciclo presencial.</small></div>
+        </div>
+        <div class="grid-2">
+          <article class="tarjeta">
+            <span class="tarjeta-numero">A</span>
+            <h3>Ruta positiva</h3>
+            <p>Hay disponibilidad: se registra el pedido, se calcula el importe, se cobra, se actualiza el kardex y se envía la comanda.</p>
+          </article>
+          <article class="tarjeta">
+            <span class="tarjeta-numero">B</span>
+            <h3>Ruta negativa</h3>
+            <p>No hay disponibilidad: se informa al cliente y el proceso termina sin venta. No queda registro de la demanda perdida.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- 4 · ISHIKAWA -->
+    <section class="slide" data-slide="3" aria-label="Resolución de problemas">
+      <div class="slide-inner">
+        <span class="sobre">Resolución de problemas</span>
+        <h2>El problema no era la cocina:<br>era el sistema de información.</h2>
+        <p class="slide-sub">El diagrama de Ishikawa agrupó las causas en seis frentes. La conclusión fue clara: la producción culinaria funciona; lo que falla es el soporte digital de la venta.</p>
+        <div class="grid-3">
+          <article class="tarjeta">
+            <span class="tarjeta-icono" aria-hidden="true">👥</span>
+            <h3>Mano de obra</h3>
+            <p>Poca capacitación digital y errores de venta concentrados en una sola persona.</p>
+          </article>
+          <article class="tarjeta">
+            <span class="tarjeta-icono" aria-hidden="true">🧩</span>
+            <h3>Método</h3>
+            <p>Procesos manuales, pedidos desorganizados y ausencia de un sistema web.</p>
+          </article>
+          <article class="tarjeta">
+            <span class="tarjeta-icono" aria-hidden="true">📊</span>
+            <h3>Medición</h3>
+            <p>Reportes tardíos, ventas mal registradas y falta de indicadores para decidir.</p>
+          </article>
+          <article class="tarjeta">
+            <span class="tarjeta-icono" aria-hidden="true">📦</span>
+            <h3>Materiales</h3>
+            <p>Datos de productos incompletos y descontrol de stock durante la operación.</p>
+          </article>
+          <article class="tarjeta">
+            <span class="tarjeta-icono" aria-hidden="true">💻</span>
+            <h3>Máquinas</h3>
+            <p>Equipos insuficientes, computadoras lentas y fallas técnicas eventuales.</p>
+          </article>
+          <article class="tarjeta">
+            <span class="tarjeta-icono" aria-hidden="true">🌐</span>
+            <h3>Medio ambiente</h3>
+            <p>Competencia digital, internet inestable y cambios constantes del mercado.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- 5 · OBJETIVOS -->
+    <section class="slide slide-oscura" data-slide="4" aria-label="Objetivos del proyecto">
+      <div class="slide-inner">
+        <span class="sobre">La misión</span>
+        <h2>Digitalizar la venta,<br>no la receta.</h2>
+        <p class="slide-sub">Diseñar un sistema web de ventas y pedidos que automatice el registro y el cobro de la atención presencial, manteniendo intacta la preparación artesanal.</p>
+        <div class="grid-3">
+          <article class="tarjeta tarjeta-oscura">
+            <span class="tarjeta-numero">01</span>
+            <h3>Documentar la operación actual</h3>
+            <p>Modelar el proceso AS-IS con actores, gateways y puntos críticos para tener una línea base objetiva.</p>
+          </article>
+          <article class="tarjeta tarjeta-oscura">
+            <span class="tarjeta-numero">02</span>
+            <h3>Detectar cuellos de botella</h3>
+            <p>Identificar dónde se pierden tiempo, dinero y trazabilidad: cálculos, stock, comandas y reportes.</p>
+          </article>
+          <article class="tarjeta tarjeta-oscura">
+            <span class="tarjeta-numero">03</span>
+            <h3>Trazar la arquitectura TO-BE</h3>
+            <p>Definir la solución digital y construir un prototipo funcional que demuestre la viabilidad.</p>
+          </article>
+        </div>
+        <p class="slide-sub"><strong>Principio rector:</strong> automatización quirúrgica. El sistema alivia la carga administrativa sin cambiar la esencia del negocio.</p>
+      </div>
+    </section>
+
+    <!-- 6 · SOLUCIÓN -->
+    <section class="slide" data-slide="5" aria-label="La solución">
+      <div class="slide-inner">
+        <span class="sobre">La solución propuesta</span>
+        <h2>Un sistema web con dos experiencias:<br>cliente y administración.</h2>
+        <p class="slide-sub">El cliente arma su pedido y elige su hora de recojo. El administrador ve todo: qué se pidió, cuánto se pagó, a qué hora y en qué estado va la comanda.</p>
+        <div class="grid-3">
+          <article class="tarjeta">
+            <span class="tarjeta-icono" aria-hidden="true">🍗</span>
+            <h3>Menú digital</h3>
+            <p>Productos con foto, descripción, precio y disponibilidad actualizada en tiempo real.</p>
+          </article>
+          <article class="tarjeta">
+            <span class="tarjeta-icono" aria-hidden="true">🎛️</span>
+            <h3>Personalización</h3>
+            <p>Con arroz, papa, ensalada y cremas. Quitar descuenta; pedir extra suma. El total se recalcula solo.</p>
+          </article>
+          <article class="tarjeta">
+            <span class="tarjeta-icono" aria-hidden="true">🕐</span>
+            <h3>Recojo con hora</h3>
+            <p>El cliente elige cuándo pasar. El pedido entra a una cola ordenada por hora de recojo.</p>
+          </article>
+          <article class="tarjeta">
+            <span class="tarjeta-icono" aria-hidden="true">💳</span>
+            <h3>Pago declarado</h3>
+            <p>Efectivo, Yape, Plin o transferencia. El administrador verifica y marca el pago como pagado.</p>
+          </article>
+          <article class="tarjeta">
+            <span class="tarjeta-icono" aria-hidden="true">🔥</span>
+            <h3>Comanda digital</h3>
+            <p>La cocina ve la orden en pantalla, con notas y acompañamientos. Se acabaron los gritos.</p>
+          </article>
+          <article class="tarjeta">
+            <span class="tarjeta-icono" aria-hidden="true">🔐</span>
+            <h3>Historial privado</h3>
+            <p>Cada cliente ve únicamente sus pedidos, con código, total, hora y estado de pago.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- 7 · CLIENTE -->
+    <section class="slide" data-slide="6" aria-label="Experiencia del cliente">
+      <div class="slide-inner">
+        <div class="portada-grid">
+          <div>
+            <span class="sobre">Experiencia del cliente</span>
+            <h2>Del antojo al recojo<br>en cuatro pasos.</h2>
+            <p class="slide-sub">Una interfaz pensada para pedir desde el celular, sin instalar nada y sin llamar por teléfono.</p>
+            <div class="grid-2">
+              <article class="tarjeta">
+                <span class="tarjeta-numero">01</span>
+                <h3>Elige tu pelícano</h3>
+                <p>Pollo, carne o mixto. También bebidas y extras.</p>
+              </article>
+              <article class="tarjeta">
+                <span class="tarjeta-numero">02</span>
+                <h3>Personaliza</h3>
+                <p>Quita o agrega acompañamientos y escribe notas.</p>
+              </article>
+              <article class="tarjeta">
+                <span class="tarjeta-numero">03</span>
+                <h3>Confirma</h3>
+                <p>Hora de recojo, método de pago y datos de contacto.</p>
+              </article>
+              <article class="tarjeta">
+                <span class="tarjeta-numero">04</span>
+                <h3>Recoge</h3>
+                <p>Da tu código PB-000X y sigue el estado desde tu cuenta.</p>
+              </article>
+            </div>
+          </div>
+          <div class="portada-foto">
+            <span class="portada-etiqueta">Personaliza</span>
+            <img src="img/platos/mixto.jpg" alt="Pelícano mixto con pollo y carne, acompañado de arroz, papas, ensalada y cremas">
+            <span class="portada-sello">Sin arroz · − S/ 2.00</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 8 · ADMIN -->
+    <section class="slide" data-slide="7" aria-label="Panel del administrador">
+      <div class="slide-inner">
+        <span class="sobre">Experiencia del administrador</span>
+        <h2>Cinco pantallas para<br>toda la operación.</h2>
+        <p class="slide-sub">El panel concentra la información que antes estaba repartida entre memoria, papel y gritos.</p>
+        <div class="grid-3">
+          <article class="tarjeta">
+            <span class="tarjeta-icono" aria-hidden="true">📊</span>
+            <h3>Resumen</h3>
+            <p>Pedidos del día, recojos próximos, ventas pagadas, por cobrar y clientes activos.</p>
+          </article>
+          <article class="tarjeta">
+            <span class="tarjeta-icono" aria-hidden="true">🧾</span>
+            <h3>Pedidos</h3>
+            <p>Tabla filtrable con código, cliente, hora de recojo, total, pago y estado. Exportable a CSV.</p>
+          </article>
+          <article class="tarjeta">
+            <span class="tarjeta-icono" aria-hidden="true">🔥</span>
+            <h3>Cocina</h3>
+            <p>Tablero por etapas: por preparar, en preparación y listos. Un clic avanza la comanda.</p>
+          </article>
+          <article class="tarjeta">
+            <span class="tarjeta-icono" aria-hidden="true">👥</span>
+            <h3>Clientes</h3>
+            <p>Historial completo por cliente: pedidos, total pagado, por cobrar y último pedido.</p>
+          </article>
+          <article class="tarjeta">
+            <span class="tarjeta-icono" aria-hidden="true">🍽️</span>
+            <h3>Menú</h3>
+            <p>Edición de precios y disponibilidad. Los cambios se reflejan al instante en la tienda.</p>
+          </article>
+          <article class="tarjeta">
+            <span class="tarjeta-icono" aria-hidden="true">🖨️</span>
+            <h3>Comanda imprimible</h3>
+            <p>Ticket de 80 mm con código, hora de recojo, detalle, notas y estado de pago.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- 9 · PRECIOS -->
+    <section class="slide" data-slide="8" aria-label="Motor de precios">
+      <div class="slide-inner">
+        <span class="sobre">Regla de negocio</span>
+        <h2>El precio se calcula solo.<br>Y se explica solo.</h2>
+        <p class="slide-sub">La base incluye los cuatro acompañamientos. Cada ajuste tiene un valor transparente y el cliente ve el desglose antes de confirmar.</p>
+        <div class="precio-demo">
+          <div>
+            <table class="precio-tabla">
+              <thead>
+                <tr><th>Concepto</th><th>Ajuste</th></tr>
+              </thead>
+              <tbody>
+                <tr><td>Pelícano de pollo completo</td><td><strong>S/ 14.00</strong></td></tr>
+                <tr><td>Sin arroz</td><td class="resta">− S/ 2.00</td></tr>
+                <tr><td>Sin papa frita</td><td class="resta">− S/ 2.00</td></tr>
+                <tr><td>Sin ensalada</td><td class="resta">− S/ 2.00</td></tr>
+                <tr><td>Sin cremas de la casa</td><td class="resta">− S/ 1.00</td></tr>
+                <tr><td>Extra de arroz, papa o ensalada</td><td class="suma">+ S/ 2.00</td></tr>
+                <tr><td>Extra de cremas</td><td class="suma">+ S/ 1.00</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="precio-total">
+            <small>Ejemplo real</small>
+            <strong>S/ 24.00</strong>
+            <span>2 × Pelícano de pollo sin arroz<br>2 × S/ 12.00 = S/ 24.00</span>
+          </div>
+        </div>
+        <p class="slide-sub">El cálculo ocurre en el navegador y se guarda con el pedido. El administrador no vuelve a teclear importes: reduce el error humano y las discusiones en caja.</p>
+      </div>
+    </section>
+
+    <!-- 10 · ARQUITECTURA -->
+    <section class="slide slide-oscura" data-slide="9" aria-label="Arquitectura">
+      <div class="slide-inner">
+        <span class="sobre">Arquitectura de la solución</span>
+        <h2>Simple, portable y<br>lista para GitHub Pages.</h2>
+        <p class="slide-sub">El prototipo es una aplicación web estática. No necesita servidor ni base de datos para demostrar el flujo completo.</p>
+        <div class="arquitectura">
+          <article class="capa">
+            <span>Capa 1</span>
+            <strong>Interfaz</strong>
+            <p>HTML semántico, CSS responsive y JavaScript vanilla. Dos aplicaciones: tienda y panel.</p>
+          </article>
+          <article class="capa">
+            <span>Capa 2</span>
+            <strong>Lógica de negocio</strong>
+            <p>Precios, autenticación, pedidos, estados, pagos y trazabilidad en <code>js/datos.js</code>.</p>
+          </article>
+          <article class="capa">
+            <span>Capa 3</span>
+            <strong>Persistencia demo</strong>
+            <p><code>localStorage</code> del navegador. Suficiente para la demo; reemplazable por una API y una BD relacional.</p>
+          </article>
+        </div>
+        <div class="grid-2">
+          <article class="tarjeta tarjeta-oscura">
+            <h3>Ventajas del prototipo</h3>
+            <p>Se despliega en minutos, no tiene costo de infraestructura y permite validar la experiencia con usuarios reales antes de invertir en un backend.</p>
+          </article>
+          <article class="tarjeta tarjeta-oscura">
+            <h3>Límite consciente</h3>
+            <p>Los datos viven en un solo navegador. Para producción se requiere API, base de datos, autenticación robusta y pasarela de pagos.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- 11 · TO-BE -->
+    <section class="slide" data-slide="10" aria-label="Matriz de transición">
+      <div class="slide-inner">
+        <span class="sobre">Matriz de transición</span>
+        <h2>Qué se automatiza<br>y qué se mantiene.</h2>
+        <p class="slide-sub">La digitalización no reemplaza al cocinero ni al cliente. Reemplaza el trabajo administrativo repetitivo y propenso a error.</p>
+        <table class="comparativa">
+          <thead>
+            <tr><th>Etapa</th><th>AS-IS</th><th>TO-BE</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>Consulta de menú y stock</td><td class="mal">De memoria / física</td><td class="bien">Menú digital con disponibilidad en tiempo real</td></tr>
+            <tr><td>Cálculo del importe</td><td class="mal">Mental y manual</td><td class="bien">Automático y con desglose visible</td></tr>
+            <tr><td>Registro de la venta</td><td class="mal">Papel / kardex manual</td><td class="bien">Pedido digital con código único</td></tr>
+            <tr><td>Comanda a cocina</td><td class="mal">Verbal o papel</td><td class="bien">Tablero de cocina en pantalla</td></tr>
+            <tr><td>Estado del pedido</td><td class="mal">Sin visibilidad</td><td class="bien">Recibido → preparación → listo → entregado</td></tr>
+            <tr><td>Pago</td><td class="mal">Cobro y registro manual</td><td class="bien">Método declarado + verificación del admin</td></tr>
+            <tr><td>Historial del cliente</td><td class="mal">Inexistente</td><td class="bien">Privado, consultable y actualizado</td></tr>
+            <tr><td>Preparación física</td><td class="bien">Artesanal</td><td class="bien">Se mantiene igual</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- 12 · DEMO -->
+    <section class="slide slide-oscura" data-slide="11" aria-label="Demo y credenciales">
+      <div class="slide-inner">
+        <span class="sobre">Demo funcional</span>
+        <h2>Probar es la mejor<br>forma de validar.</h2>
+        <p class="slide-sub">La demo incluye usuarios, pedidos de ejemplo, panel de administración y datos persistentes en el navegador. No uses contraseñas reales.</p>
+        <div class="credenciales">
+          <article class="credencial">
+            <h3>👤 Cliente</h3>
+            <dl>
+              <dt>Usuario</dt><dd>maria</dd>
+              <dt>Correo</dt><dd>maria@demo.pe</dd>
+              <dt>Contraseña</dt><dd>Cliente2026*</dd>
+              <dt>Alterno</dt><dd>juan · juan@demo.pe</dd>
+            </dl>
+            <p class="nota">María y Juan tienen historiales separados. Cada uno ve únicamente sus propios pedidos.</p>
+          </article>
+          <article class="credencial">
+            <h3>🛠️ Administrador</h3>
+            <dl>
+              <dt>Usuario</dt><dd>admin</dd>
+              <dt>Contraseña</dt><dd>Admin2026*</dd>
+              <dt>Acceso</dt><dd>admin.html</dd>
+              <dt>Funciones</dt><dd>Pedidos, pagos, cocina, clientes y menú</dd>
+            </dl>
+            <p class="nota">El panel no es accesible con cuentas de cliente. Los pagos se verifican manualmente.</p>
+          </article>
+        </div>
+        <div class="cierre-links">
+          <a href="index.html">Abrir la tienda →</a>
+          <a class="secundario" href="admin.html">Abrir el panel →</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- 13 · RESULTADOS -->
+    <section class="slide" data-slide="12" aria-label="Resultados y siguientes pasos">
+      <div class="slide-inner">
+        <span class="sobre">Resultados esperados</span>
+        <h2>Menos tiempo administrando,<br>más tiempo atendiendo.</h2>
+        <div class="grid-3">
+          <article class="tarjeta">
+            <span class="tarjeta-icono" aria-hidden="true">⏱️</span>
+            <h3>Menos espera</h3>
+            <p>El cliente no espera a que el cajero consulte el menú ni a que sume el total a mano.</p>
+          </article>
+          <article class="tarjeta">
+            <span class="tarjeta-icono" aria-hidden="true">🎯</span>
+            <h3>Menos errores</h3>
+            <p>El precio se calcula una sola vez y queda guardado con el pedido. No se reescribe ni se reinterpreta.</p>
+          </article>
+          <article class="tarjeta">
+            <span class="tarjeta-icono" aria-hidden="true">🧭</span>
+            <h3>Más trazabilidad</h3>
+            <p>Cada pedido tiene código, hora, estado, método de pago y eventos. La información deja de depender de la memoria.</p>
+          </article>
+        </div>
+        <div class="grid-2">
+          <article class="tarjeta">
+            <h3>Validación directiva</h3>
+            <p>Confirmar con la gerencia los supuestos del AS-IS: orden de consulta de stock, secuencia de cobro y manejo de rechazos.</p>
+          </article>
+          <article class="tarjeta">
+            <h3>Siguiente sprint</h3>
+            <p>Migrar el prototipo a una API con base de datos relacional, autenticación robusta, inventario real y pasarela de pagos.</p>
+          </article>
+        </div>
+        <p class="slide-sub"><strong>Conclusión:</strong> la automatización es viable y quirúrgica. Se puede empezar por el módulo de pedidos y cálculo automático, sin detener la operación.</p>
+      </div>
+    </section>
+
+    <!-- 14 · CIERRE -->
+    <section class="slide slide-oscura" data-slide="13" aria-label="Cierre">
+      <div class="slide-inner">
+        <div class="cierre-grid">
+          <div>
+            <span class="sobre">Gracias</span>
+            <h1>Del caos manual<br>a la <em>claridad digital</em>.</h1>
+            <p class="slide-sub">Un proyecto académico que demuestra que la transformación digital no empieza con más tecnología, sino con entender el proceso que se quiere mejorar.</p>
+            <div class="cierre-links">
+              <a href="index.html">Ver la aplicación →</a>
+              <a class="secundario" href="documentacion.html">Leer documentación</a>
+              <a class="secundario" href="docs/CREDENCIALES.md">Credenciales demo</a>
+            </div>
+          </div>
+          <aside class="cierre-firma">
+            <strong>Guido David Panca Escarcena</strong>
+            <span>Analista de Sistemas · Ingeniería de Software</span>
+            <p>Universidad Nacional de Moquegua (UNAM)<br>Docente: Dr. Alexander Morales Gonzales<br>Pelícanos Bros · Moquegua, Perú · 2026</p>
+          </aside>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="pres-pie">
+    <div class="pres-puntos" id="puntos" aria-label="Ir a una diapositiva"></div>
+    <div class="pres-progreso" aria-hidden="true"><span id="progreso"></span></div>
+    <span class="pres-contador" id="contador">1 / 14</span>
+    <div class="pres-flechas">
+      <button type="button" id="btnAnterior" aria-label="Diapositiva anterior">←</button>
+      <button type="button" id="btnSiguiente" aria-label="Diapositiva siguiente">→</button>
+    </div>
+  </footer>
+
+  <script src="js/presentacion.js"></script>
+</body>
+</html>

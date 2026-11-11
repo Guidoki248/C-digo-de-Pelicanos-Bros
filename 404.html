@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#0f4c45">
+  <title>Página no encontrada · Pelícanos Bros</title>
+  <link rel="icon" href="img/logo.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,700;9..144,900&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --tinta: #0f2320;
+      --musgo: #0f4c45;
+      --mango: #f4a51c;
+      --mango-2: #ffd37a;
+      --crema: #fbf7ee;
+      --gris: #6b7f7b;
+      --display: "Fraunces", Georgia, serif;
+      --fuente: "Outfit", system-ui, sans-serif;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      min-height: 100vh;
+      display: grid;
+      place-items: center;
+      padding: 24px;
+      background:
+        radial-gradient(ellipse at 15% 10%, rgba(244, 165, 28, 0.18), transparent 45%),
+        radial-gradient(ellipse at 90% 90%, rgba(15, 76, 69, 0.2), transparent 48%),
+        var(--crema);
+      color: var(--tinta);
+      font-family: var(--fuente);
+      text-align: center;
+    }
+    .caja { max-width: 620px; }
+    .logo {
+      width: 86px;
+      height: 86px;
+      margin: 0 auto 18px;
+      border-radius: 50%;
+      box-shadow: 0 20px 40px -24px rgba(15, 35, 32, 0.7);
+    }
+    .codigo {
+      font-family: var(--display);
+      font-size: clamp(5rem, 18vw, 9rem);
+      line-height: 0.85;
+      letter-spacing: -0.06em;
+      color: var(--musgo);
+    }
+    .codigo span { color: var(--mango); }
+    h1 {
+      margin: 20px 0 10px;
+      font-family: var(--display);
+      font-size: clamp(1.7rem, 5vw, 2.6rem);
+      line-height: 1.05;
+      letter-spacing: -0.03em;
+    }
+    p {
+      margin: 0 auto 26px;
+      max-width: 46ch;
+      color: var(--gris);
+      line-height: 1.6;
+    }
+    .acciones {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 10px;
+    }
+    a {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      border: 1px solid rgba(15, 35, 32, 0.18);
+      border-radius: 999px;
+      padding: 12px 20px;
+      color: var(--tinta);
+      font-size: 0.9rem;
+      font-weight: 600;
+      text-decoration: none;
+      transition: background 0.18s ease, transform 0.18s ease;
+    }
+    a:hover { background: #fff; transform: translateY(-1px); }
+    a.primario { background: var(--musgo); border-color: var(--musgo); color: #fff; }
+    a.primario:hover { background: #14685d; }
+  </style>
+</head>
+<body>
+  <main class="caja">
+    <img class="logo" src="img/logo.svg" alt="Pelícanos Bros">
+    <div class="codigo">4<span>0</span>4</div>
+    <h1>Este pelícano se voló.</h1>
+    <p>La página que buscas no existe o cambió de dirección. Vuelve a la tienda para armar tu pedido o entra al panel de administración.</p>
+    <div class="acciones">
+      <a class="primario" href="index.html">🛍️ Ir a la tienda</a>
+      <a href="admin.html">🛠️ Panel de administración</a>
+      <a href="documentacion.html">📄 Documentación</a>
+    </div>
+  </main>
+</body>
+</html>

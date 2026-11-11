@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120" role="img" aria-labelledby="tituloLogo">
+  <title id="tituloLogo">Pelícanos Bros</title>
+  <defs>
+    <linearGradient id="fondoLogo" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#14685d"/>
+      <stop offset="1" stop-color="#0b3b35"/>
+    </linearGradient>
+    <linearGradient id="picoLogo" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#ffd37a"/>
+      <stop offset="1" stop-color="#f4a51c"/>
+    </linearGradient>
+  </defs>
+  <circle cx="60" cy="60" r="58" fill="url(#fondoLogo)"/>
+  <circle cx="60" cy="60" r="52" fill="none" stroke="#fbf7ee" stroke-opacity=".18" stroke-width="1.5"/>
+  <path d="M73 26c-12.2 0-21 8.8-21 20.5 0 5.8 2.3 9.3 2.3 13.8 0 7.2-4.8 12-12.3 14.8-8.2 3-15.5 2.8-23.2 1.4 5.8 11.5 18 18.7 31.4 18.7 17.8 0 30.8-13 30.8-30.8V38.8C81 30.8 78 26 73 26z" fill="#fbf7ee"/>
+  <path d="M53 41.5c-14 0-25.4 4.6-35.6 13.8 9.2-.2 16.3 1.2 21.8 4.4-9.2 1.5-16.1 5-20.8 10.4 13.4 3.1 25.4 2.1 35.6-3.5 7.2-4 11-9.6 11-15.6 0-6.2-5-9.5-12-9.5z" fill="url(#picoLogo)"/>
+  <path d="M39.5 55.2c7.2 1.6 13.1 4.7 17.5 9.2" fill="none" stroke="#d9820b" stroke-width="2.2" stroke-linecap="round" opacity=".65"/>
+  <circle cx="61" cy="38.5" r="2.8" fill="#0f2320"/>
+  <circle cx="61.9" cy="37.7" r=".9" fill="#ffffff"/>
+  <path d="M76 76c5.6-4.4 8.8-10.7 8.8-18.2" fill="none" stroke="#dff1e9" stroke-width="2.4" stroke-linecap="round" opacity=".7"/>
+  <path d="M38 92c6 3.4 13 4.6 20.2 3.3" fill="none" stroke="#f4a51c" stroke-width="2.2" stroke-linecap="round" opacity=".55"/>
+</svg>

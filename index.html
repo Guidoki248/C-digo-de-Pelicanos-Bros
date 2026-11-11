@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#0f4c45">
+  <title>Pelícanos Bros · Pide tu pelícano y recógelo sin filas</title>
+  <meta name="description" content="Sistema web de pedidos de Pelícanos Bros: arma tu pelícano, elige tu hora de recojo, paga con Yape, Plin o efectivo y revisa tu historial. Proyecto académico UNAM.">
+  <meta property="og:title" content="Pelícanos Bros · Pedidos en línea">
+  <meta property="og:description" content="Del caos manual a la claridad digital: pide tu pelícano, personalízalo y recógelo a tu hora.">
+  <meta property="og:image" content="img/platos/pollo.jpg">
+  <meta property="og:type" content="website">
+  <link rel="icon" href="img/logo.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,700;9..144,900&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/estilos.css">
+</head>
+<body>
+  <a class="saltar" href="#menu">Saltar al menú</a>
+
+  <header class="barra">
+    <div class="barra-inner">
+      <a class="marca" href="index.html" aria-label="Pelícanos Bros, inicio">
+        <img src="img/logo.svg" alt="" width="46" height="46">
+        <span class="marca-texto">
+          <strong>Pelícanos Bros</strong>
+          <span>Pollo al carbón · Moquegua</span>
+        </span>
+      </a>
+
+      <nav class="nav" aria-label="Navegación principal">
+        <a href="#menu">Menú</a>
+        <a href="#como-funciona">Cómo funciona</a>
+        <a href="#historial">Mis pedidos</a>
+      </nav>
+
+      <div class="zona-sesion" id="zonaSesion"></div>
+    </div>
+  </header>
+
+  <main>
+    <!-- HERO -->
+    <section class="hero">
+      <div class="hero-texto">
+        <span class="etiqueta">🔥 Hecho al carbón · listo para recoger</span>
+        <h1>Tu pelícano<br><em>completo</em>, sin filas.</h1>
+        <p>Elige tu pollo, arma el plato a tu gusto y recógelo a la hora que elijas. El sistema calcula el precio solito: si no quieres arroz, papa o ensalada, el descuento se aplica al instante.</p>
+        <div class="hero-acciones">
+          <a class="btn btn-primario btn-grande" href="#menu">Armar mi pedido <span aria-hidden="true">→</span></a>
+          <a class="btn btn-fantasma btn-grande" href="#como-funciona">Cómo funciona</a>
+        </div>
+        <div class="hero-datos">
+          <div><strong>S/ 14.00</strong><span>Pelícano completo</span></div>
+          <div><strong>− S/ 2.00</strong><span>Sin arroz, papa o ensalada</span></div>
+          <div><strong>0 filas</strong><span>Recojo con hora</span></div>
+        </div>
+      </div>
+
+      <div class="hero-visual">
+        <div class="hero-foto-marco">
+          <img src="img/platos/pollo.jpg" alt="Pelícano de pollo con arroz, papas fritas, ensalada y cremas de la casa">
+          <span class="sticker">Hecho al momento</span>
+        </div>
+        <div class="tarjeta-flotante tarjeta-arriba">
+          <span class="tarjeta-icono">🕐</span>
+          <div><strong>Recojo 12:30</strong><small>Listo para ti</small></div>
+        </div>
+        <div class="tarjeta-flotante tarjeta-abajo">
+          <div><small>Pelícano completo</small><strong>S/ 14.00</strong></div>
+          <span class="mini-precio">sin arroz<br><strong>S/ 12.00</strong></span>
+        </div>
+      </div>
+    </section>
+
+    <!-- BENEFICIOS -->
+    <section class="tira" aria-label="Beneficios del sistema">
+      <div><span aria-hidden="true">🧮</span><strong>Precios claros</strong><small>El sistema calcula, no el cajero.</small></div>
+      <div><span aria-hidden="true">🕐</span><strong>Tu hora de recojo</strong><small>Elige cuándo pasar por tu pedido.</small></div>
+      <div><span aria-hidden="true">🔐</span><strong>Historial personal</strong><small>Solo tú ves tus pedidos.</small></div>
+      <div><span aria-hidden="true">✅</span><strong>Pago verificado</strong><small>Efectivo, Yape, Plin o transferencia.</small></div>
+    </section>
+
+    <!-- CÓMO FUNCIONA -->
+    <section class="seccion seccion-como" id="como-funciona">
+      <div class="contenedor">
+        <div class="cabecera-seccion cabecera-centrada">
+          <span class="sobre">Del carrito a tu mesa</span>
+          <h2>Tres pasos y listo</h2>
+          <p>Sin comandas a gritos ni cuentas mentales. Tu pedido queda registrado con hora, precio y forma de pago.</p>
+        </div>
+        <div class="pasos">
+          <article class="paso">
+            <span class="paso-numero">01</span>
+            <span class="paso-icono" aria-hidden="true">🍗</span>
+            <h3>Elige y personaliza</h3>
+            <p>Escoge tu pelícano. Con arroz, papa, ensalada y cremas viene completo. Quita lo que no quieras o pide extra.</p>
+          </article>
+          <article class="paso">
+            <span class="paso-numero">02</span>
+            <span class="paso-icono" aria-hidden="true">🕐</span>
+            <h3>Confirma tu hora</h3>
+            <p>Indica a qué hora vas a recoger y cómo vas a pagar. El total se calcula automáticamente, sin errores.</p>
+          </article>
+          <article class="paso">
+            <span class="paso-numero">03</span>
+            <span class="paso-icono" aria-hidden="true">🛍️</span>
+            <h3>Recoge y disfruta</h3>
+            <p>Llega a tu hora, da tu código de pedido y listo. El administrador verifica el pago y actualiza el estado.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- MENÚ + CARRITO -->
+    <section class="seccion seccion-menu" id="menu">
+      <div class="contenedor">
+        <div class="cabecera-seccion">
+          <div>
+            <span class="sobre">Nuestro menú</span>
+            <h2>Arma tu pelícano</h2>
+            <p>El precio base incluye arroz, papa frita, ensalada y cremas. Ajusta cada acompañamiento y mira cómo cambia el total.</p>
+          </div>
+          <div class="leyenda-precios">
+            <span><b class="punto punto-verde"></b> Incluido</span>
+            <span><b class="punto punto-rojo"></b> Quitar descuenta</span>
+            <span><b class="punto punto-mango"></b> Extra suma</span>
+          </div>
+        </div>
+
+        <div class="menu-layout">
+          <div class="menu-principal">
+            <div class="filtros" id="filtros" role="tablist" aria-label="Filtrar productos"></div>
+            <div class="productos" id="productos" aria-live="polite"></div>
+            <div class="aviso-precios">
+              <span aria-hidden="true">💡</span>
+              <p><strong>¿Cómo se calcula?</strong> Pelícano de pollo S/ 14.00. Sin arroz, sin papa o sin ensalada: −S/ 2.00 cada uno. Sin cremas: −S/ 1.00. Los extras suman S/ 2.00 (cremas S/ 1.00).</p>
+            </div>
+          </div>
+
+          <aside class="carrito" id="carrito" aria-label="Tu pedido"></aside>
+        </div>
+      </div>
+    </section>
+
+    <!-- HISTORIA / CONTEXTO -->
+    <section class="seccion seccion-historia">
+      <div class="contenedor historia-grid">
+        <div class="historia-fotos" aria-hidden="true">
+          <img src="img/platos/pollo2.jpg" alt="">
+          <img src="img/platos/cremas.jpg" alt="">
+          <img src="img/platos/chicha.jpg" alt="">
+        </div>
+        <div class="historia-texto">
+          <span class="sobre">Del caos manual a la claridad digital</span>
+          <h2>Menos memoria,<br>más sabor.</h2>
+          <p>Pelícanos Bros nació como un carrito de comida con atención 100% presencial: el cajero consultaba el menú de memoria, calculaba el total a mano y enviaba la comanda a gritos. Este sistema convierte ese flujo en algo claro y trazable.</p>
+          <ul class="lista-check">
+            <li>Menú y precios actualizados en tiempo real.</li>
+            <li>Cálculo automático del total, sin errores de cobro.</li>
+            <li>Comanda digital visible para cocina y administración.</li>
+            <li>Historial privado para cada cliente.</li>
+          </ul>
+          <div class="historia-acciones">
+            <a href="presentacion.html" class="btn btn-fantasma">Ver presentación del proyecto</a>
+            <a href="documentacion.html" class="btn btn-texto">Leer documentación <span aria-hidden="true">→</span></a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- HISTORIAL DEL CLIENTE -->
+    <section class="seccion seccion-historial" id="historial">
+      <div class="contenedor">
+        <div class="cabecera-seccion">
+          <div>
+            <span class="sobre">Tu cuenta</span>
+            <h2>Mis pedidos</h2>
+            <p>Aquí ves únicamente tus pedidos: qué compraste, cuánto pagaste, a qué hora lo hiciste y a qué hora lo recoges.</p>
+          </div>
+          <button type="button" class="btn btn-fantasma btn-chico" id="btnActualizarHistorial">↻ Actualizar</button>
+        </div>
+        <div id="historialContenido"></div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="pie">
+    <div class="contenedor pie-grid">
+      <div class="pie-marca">
+        <img src="img/logo.svg" alt="" width="52" height="52">
+        <div>
+          <strong>Pelícanos Bros</strong>
+          <p>Pollo al carbón, hecho al momento. Pedidos en línea con recojo en tienda.</p>
+        </div>
+      </div>
+      <div>
+        <h4>Visítanos</h4>
+        <p>Av. Balta 245, Moquegua<br>Lun a Sáb · 11:00 a 22:00<br><a href="tel:+51953123456">+51 953 123 456</a></p>
+      </div>
+      <div>
+        <h4>Proyecto</h4>
+        <p>
+          <a href="presentacion.html">Presentación</a><br>
+          <a href="documentacion.html">Documentación</a><br>
+          <a href="admin.html">Acceso administrador</a>
+        </p>
+      </div>
+      <div>
+        <h4>Demo académica</h4>
+        <p>Los datos se guardan en este navegador. No uses contraseñas reales.</p>
+        <a class="pie-credito" href="documentacion.html#creditos">Créditos de imágenes</a>
+      </div>
+    </div>
+    <div class="contenedor pie-base">
+      <span>© <span id="anioActual"></span> Pelícanos Bros · Proyecto de Ingeniería de Software · UNAM</span>
+      <span>Del caos manual a la claridad digital</span>
+    </div>
+  </footer>
+
+  <!-- MODAL PRODUCTO -->
+  <div class="modal" id="modal-producto" role="dialog" aria-modal="true" aria-labelledby="tituloProducto" aria-hidden="true">
+    <div class="modal-caja modal-producto-caja">
+      <button type="button" class="cerrar" data-cerrar aria-label="Cerrar">✕</button>
+      <div id="contenidoProducto"></div>
+    </div>
+  </div>
+
+  <!-- MODAL AUTH -->
+  <div class="modal" id="modal-auth" role="dialog" aria-modal="true" aria-labelledby="tituloAuth" aria-hidden="true">
+    <div class="modal-caja modal-angosta">
+      <button type="button" class="cerrar" data-cerrar aria-label="Cerrar">✕</button>
+      <div class="modal-cabecera">
+        <span class="sobre">Tu cuenta</span>
+        <h3 id="tituloAuth">Ingresa a Pelícanos Bros</h3>
+        <p id="subtituloAuth">Guarda tus pedidos y revisa tu historial cuando quieras.</p>
+      </div>
+      <div class="modal-cuerpo">
+        <div class="tabs" role="tablist" aria-label="Ingresar o crear cuenta">
+          <button type="button" class="activo" data-tab-auth="login" role="tab" aria-selected="true">Ingresar</button>
+          <button type="button" data-tab-auth="registro" role="tab" aria-selected="false">Crear cuenta</button>
+        </div>
+
+        <form id="formLogin" class="form-auth" novalidate>
+          <div class="campo">
+            <label for="loginIdentificador">Correo o usuario</label>
+            <input type="text" id="loginIdentificador" name="identificador" autocomplete="username" placeholder="maria@demo.pe" required>
+          </div>
+          <div class="campo">
+            <label for="loginPassword">Contraseña</label>
+            <input type="password" id="loginPassword" name="password" autocomplete="current-password" placeholder="Tu contraseña" required>
+          </div>
+          <p class="mensaje-error" id="errorLogin" hidden></p>
+          <button type="submit" class="btn btn-primario btn-bloque">Ingresar</button>
+          <p class="nota-demo">Demo cliente: <b>maria@demo.pe</b> · <b>Cliente2026*</b></p>
+        </form>
+
+        <form id="formRegistro" class="form-auth" novalidate hidden>
+          <div class="campo">
+            <label for="registroNombre">Nombre completo</label>
+            <input type="text" id="registroNombre" name="nombre" autocomplete="name" placeholder="Ej. Ana Torres" required>
+          </div>
+          <div class="campo-fila">
+            <div class="campo">
+              <label for="registroCorreo">Correo</label>
+              <input type="email" id="registroCorreo" name="correo" autocomplete="email" placeholder="ana@correo.com" required>
+            </div>
+            <div class="campo">
+              <label for="registroTelefono">Teléfono</label>
+              <input type="tel" id="registroTelefono" name="telefono" autocomplete="tel" placeholder="987 654 321" required>
+            </div>
+          </div>
+          <div class="campo-fila">
+            <div class="campo">
+              <label for="registroPassword">Contraseña</label>
+              <input type="password" id="registroPassword" name="password" autocomplete="new-password" placeholder="Mínimo 6 caracteres" required>
+            </div>
+            <div class="campo">
+              <label for="registroPassword2">Repite la contraseña</label>
+              <input type="password" id="registroPassword2" name="password2" autocomplete="new-password" placeholder="Repite tu contraseña" required>
+            </div>
+          </div>
+          <p class="mensaje-error" id="errorRegistro" hidden></p>
+          <button type="submit" class="btn btn-primario btn-bloque">Crear mi cuenta</button>
+          <p class="nota-demo">Tus pedidos quedarán asociados solo a tu cuenta.</p>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <!-- MODAL CHECKOUT -->
+  <div class="modal" id="modal-checkout" role="dialog" aria-modal="true" aria-labelledby="tituloCheckout" aria-hidden="true">
+    <div class="modal-caja modal-ancho">
+      <button type="button" class="cerrar" data-cerrar aria-label="Cerrar">✕</button>
+      <div class="modal-cabecera">
+        <span class="sobre">Último paso</span>
+        <h3 id="tituloCheckout">Confirma tu pedido</h3>
+        <p>Elige a qué hora vas a recoger y cómo vas a pagar. El administrador verá tu pedido al instante.</p>
+      </div>
+      <div class="modal-cuerpo">
+        <form id="formCheckout" novalidate>
+          <div class="checkout-grid">
+            <div>
+              <h4 class="subtitulo-form">Datos de recojo</h4>
+              <div class="campo">
+                <label for="checkoutNombre">A nombre de</label>
+                <input type="text" id="checkoutNombre" readonly>
+              </div>
+              <div class="campo-fila">
+                <div class="campo">
+                  <label for="checkoutTelefono">Teléfono de contacto</label>
+                  <input type="tel" id="checkoutTelefono" placeholder="987 654 321" required>
+                </div>
+                <div class="campo">
+                  <label for="checkoutRecojo">Hora de recojo</label>
+                  <input type="datetime-local" id="checkoutRecojo" required>
+                </div>
+              </div>
+              <div class="campo">
+                <span class="label-grupo">Forma de pago</span>
+                <div class="pagos">
+                  <label class="pago-opcion">
+                    <input type="radio" name="metodoPago" value="efectivo" checked>
+                    <span class="pago-icono" aria-hidden="true">💵</span>
+                    <span><strong>Efectivo</strong><small>Pagas al recoger</small></span>
+                  </label>
+                  <label class="pago-opcion">
+                    <input type="radio" name="metodoPago" value="yape">
+                    <span class="pago-icono" aria-hidden="true">📱</span>
+                    <span><strong>Yape</strong><small>El admin verifica</small></span>
+                  </label>
+                  <label class="pago-opcion">
+                    <input type="radio" name="metodoPago" value="plin">
+                    <span class="pago-icono" aria-hidden="true">📲</span>
+                    <span><strong>Plin</strong><small>El admin verifica</small></span>
+                  </label>
+                  <label class="pago-opcion">
+                    <input type="radio" name="metodoPago" value="transferencia">
+                    <span class="pago-icono" aria-hidden="true">🏦</span>
+                    <span><strong>Transferencia</strong><small>El admin verifica</small></span>
+                  </label>
+                </div>
+              </div>
+              <div class="campo">
+                <label for="checkoutNota">Nota para la cocina (opcional)</label>
+                <textarea id="checkoutNota" rows="2" placeholder="Ej. llegaré a las 12:30, sin ají, etc."></textarea>
+              </div>
+            </div>
+            <aside class="resumen-checkout" id="resumenCheckout" aria-label="Resumen del pedido"></aside>
+          </div>
+          <p class="mensaje-error" id="errorCheckout" hidden></p>
+          <button type="submit" class="btn btn-primario btn-bloque btn-grande" id="btnConfirmarPedido">Confirmar pedido</button>
+          <p class="nota-demo">Al confirmar, tu pedido queda registrado con la hora exacta. Solo se recoge en tienda.</p>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <!-- MODAL ÉXITO -->
+  <div class="modal" id="modal-exito" role="dialog" aria-modal="true" aria-labelledby="tituloExito" aria-hidden="true">
+    <div class="modal-caja modal-angosta">
+      <button type="button" class="cerrar" data-cerrar aria-label="Cerrar">✕</button>
+      <div id="contenidoExito"></div>
+    </div>
+  </div>
+
+  <div class="toasts" id="toasts" aria-live="polite" aria-atomic="false"></div>
+
+  <script src="js/datos.js"></script>
+  <script src="js/ui.js"></script>
+  <script src="js/cliente.js"></script>
+</body>
+</html>

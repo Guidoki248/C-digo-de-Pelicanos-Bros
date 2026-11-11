@@ -1,0 +1,517 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#0f4c45">
+  <title>Documentación del proyecto · Pelícanos Bros</title>
+  <meta name="description" content="Documento de proyecto del sistema web de pedidos Pelícanos Bros: problema AS-IS, objetivos, requerimientos, arquitectura, reglas de negocio, credenciales demo y guía de despliegue.">
+  <link rel="icon" href="img/logo.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,700;9..144,900&family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/documentacion.css">
+</head>
+<body>
+
+  <header class="doc-barra">
+    <div class="doc-barra-inner">
+      <a class="doc-marca" href="index.html" aria-label="Volver a la tienda Pelícanos Bros">
+        <img src="img/logo.svg" alt="" width="42" height="42">
+        <span>
+          <strong>Pelícanos Bros</strong>
+          <span>Documentación del proyecto</span>
+        </span>
+      </a>
+      <div class="doc-barra-acciones">
+        <a class="btn" href="index.html">🛍️ <span>Tienda</span></a>
+        <a class="btn" href="presentacion.html">📽️ <span>Presentación</span></a>
+        <a class="btn btn-fantasma" href="admin.html">🛠️ <span>Panel</span></a>
+        <button type="button" class="btn btn-primario" onclick="window.print()">🖨️ <span>Imprimir / PDF</span></button>
+      </div>
+    </div>
+  </header>
+
+  <section class="doc-hero">
+    <div class="doc-hero-inner">
+      <div>
+        <span class="sobre">Ingeniería de Software · UNAM · 2026</span>
+        <h1>Documento del proyecto<br>Pelícanos Bros</h1>
+        <p>Sistema web de ventas y pedidos con recojo en tienda. Del análisis AS-IS del proceso manual a un prototipo funcional con panel de administración, trazabilidad de pedidos y cálculo automático de precios.</p>
+      </div>
+      <div class="doc-meta">
+        <div><span>Estudiante</span><strong>Guido David Panca Escarcena</strong></div>
+        <div><span>Docente</span><strong>Dr. Alexander Morales Gonzales</strong></div>
+        <div><span>Curso</span><strong>Ingeniería de Software</strong></div>
+        <div><span>Institución</span><strong>Universidad Nacional de Moquegua</strong></div>
+        <div><span>Versión</span><strong>1.0 · Demo académica</strong></div>
+      </div>
+    </div>
+  </section>
+
+  <div class="doc-layout">
+
+    <aside class="doc-indice">
+      <h2>Contenido</h2>
+      <ol>
+        <li><a href="#resumen">Resumen ejecutivo</a></li>
+        <li><a href="#problema">Contexto y problema</a></li>
+        <li><a href="#objetivos">Objetivos y alcance</a></li>
+        <li><a href="#actores">Actores y roles</a></li>
+        <li><a href="#requerimientos">Requerimientos</a></li>
+        <li><a href="#arquitectura">Arquitectura</a></li>
+        <li><a href="#datos">Modelo de datos</a></li>
+        <li><a href="#reglas">Reglas de negocio</a></li>
+        <li><a href="#flujo-cliente">Flujo del cliente</a></li>
+        <li><a href="#flujo-admin">Flujo del administrador</a></li>
+        <li><a href="#seguridad">Seguridad y privacidad</a></li>
+        <li><a href="#credenciales">Credenciales demo</a></li>
+        <li><a href="#pruebas">Pruebas y validación</a></li>
+        <li><a href="#despliegue">Despliegue en GitHub</a></li>
+        <li><a href="#limitaciones">Limitaciones y mejoras</a></li>
+        <li><a href="#creditos">Créditos de imágenes</a></li>
+        <li><a href="#conclusiones">Conclusiones</a></li>
+      </ol>
+      <p class="indice-pie">Documento imprimible. Usa el botón <strong>Imprimir / PDF</strong> para guardar una copia.</p>
+    </aside>
+
+    <main class="doc-contenido">
+
+      <section id="resumen">
+        <span class="sobre">01 · Resumen</span>
+        <h2>Una solución pequeña para un problema real.</h2>
+        <p>Pelícanos Bros es un negocio de pollo al carbón en Moquegua que operaba con un flujo de venta completamente manual: el cajero consultaba el menú de memoria, calculaba el total a mano, registraba la venta en papel, descontaba existencias en un kardex físico y enviaba la comanda a cocina de forma verbal.</p>
+        <p>Este proyecto documenta ese proceso AS-IS y construye un prototipo web que digitaliza la toma de pedidos, el cálculo de precios, la comunicación con cocina y el seguimiento del cliente, sin alterar la preparación artesanal.</p>
+        <div class="doc-grid doc-grid-3">
+          <article class="doc-card"><span class="icono" aria-hidden="true">🎯</span><strong>Problema</strong><p>Errores de cobro, tiempos de espera y pérdida de trazabilidad por depender de la memoria y el papel.</p></article>
+          <article class="doc-card"><span class="icono" aria-hidden="true">💡</span><strong>Solución</strong><p>Aplicación web con menú digital, personalización de platos, checkout y panel administrativo.</p></article>
+          <article class="doc-card"><span class="icono" aria-hidden="true">📈</span><strong>Resultado</strong><p>Prototipo funcional, documentación, presentación y carpeta lista para publicar en GitHub Pages.</p></article>
+        </div>
+        <div class="aviso aviso-verde">
+          <strong>Idea central</strong>
+          La transformación digital no empieza con más tecnología, sino con entender el proceso que se quiere mejorar. El sistema automatiza lo repetitivo y deja a las personas lo que aportan valor: cocinar y atender.
+        </div>
+      </section>
+
+      <section id="problema">
+        <span class="sobre">02 · Contexto</span>
+        <h2>El caos manual: cinco fricciones del proceso actual.</h2>
+        <p>El análisis AS-IS identificó que el cajero concentraba casi toda la carga cognitiva del proceso. En horas pico, esa concentración producía errores y demoras en cadena.</p>
+        <div class="doc-grid">
+          <article class="doc-card"><span class="icono" aria-hidden="true">👀</span><strong>Consultas a ciegas</strong><p>El menú y la disponibilidad se verificaban mentalmente o caminando hacia la cocina, por cada cliente.</p></article>
+          <article class="doc-card"><span class="icono" aria-hidden="true">🧮</span><strong>Cálculos mentales</strong><p>El importe total se sumaba a mano. Un error de suma se traducía en pérdida económica o reclamo.</p></article>
+          <article class="doc-card"><span class="icono" aria-hidden="true">📒</span><strong>Kardex manual</strong><p>Las existencias se descontaban en papel después de cada venta; con fila, el registro se omitía.</p></article>
+          <article class="doc-card"><span class="icono" aria-hidden="true">📣</span><strong>Comandas verbales</strong><p>La orden llegaba a cocina a gritos o en papel, generando confusión y reprocesos.</p></article>
+          <article class="doc-card"><span class="icono" aria-hidden="true">📊</span><strong>Reportes tardíos</strong><p>La información de ventas estaba dispersa y no permitía decidir con datos actualizados.</p></article>
+          <article class="doc-card"><span class="icono" aria-hidden="true">📦</span><strong>Stock sin control</strong><p>No había una fuente única de verdad sobre productos disponibles y agotados.</p></article>
+        </div>
+        <h3>Análisis de causas (Ishikawa)</h3>
+        <div class="tabla-envoltura">
+          <table class="tabla-doc">
+            <thead><tr><th>Categoría</th><th>Causas identificadas</th></tr></thead>
+            <tbody>
+              <tr><td>Mano de obra</td><td>Falta de capacitación digital, errores de venta, conocimiento concentrado en una persona.</td></tr>
+              <tr><td>Método</td><td>Procesos manuales, pedidos desorganizados, ausencia de un sistema web.</td></tr>
+              <tr><td>Medición</td><td>Reportes tardíos, ventas mal registradas, falta de indicadores.</td></tr>
+              <tr><td>Materiales</td><td>Datos de productos incompletos, descontrol de stock.</td></tr>
+              <tr><td>Máquinas</td><td>Equipos insuficientes, computadoras lentas, fallas técnicas.</td></tr>
+              <tr><td>Medio ambiente</td><td>Competencia digital, internet inestable, cambios del mercado.</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <section id="objetivos">
+        <span class="sobre">03 · Objetivos</span>
+        <h2>Objetivo general y alcance del prototipo.</h2>
+        <p><strong>Objetivo general:</strong> diseñar un sistema web de ventas y pedidos para Pelícanos Bros que automatice el registro y el cobro de la atención presencial, mejore la trazabilidad y reduzca los errores del proceso manual.</p>
+        <h3>Objetivos específicos</h3>
+        <ol>
+          <li>Documentar la operación física actual (AS-IS), sus actores, gateways y puntos críticos.</li>
+          <li>Detectar cuellos de botella en cálculos, disponibilidad, registro de ventas y comunicación con cocina.</li>
+          <li>Diseñar la arquitectura TO-BE y construir un prototipo funcional que demuestre la viabilidad.</li>
+          <li>Validar la experiencia con usuarios demo: cliente que pide y administrador que gestiona.</li>
+        </ol>
+        <h3>Alcance incluido</h3>
+        <ul>
+          <li>Registro e inicio de sesión de clientes con historial privado.</li>
+          <li>Menú digital con fotos, precios, categorías y disponibilidad.</li>
+          <li>Personalización de acompañamientos con cálculo automático del precio.</li>
+          <li>Carrito, checkout, hora de recojo y método de pago declarado.</li>
+          <li>Panel administrativo con resumen, pedidos, cocina, clientes y menú.</li>
+          <li>Verificación manual de pagos, cambios de estado y trazabilidad.</li>
+          <li>Exportación CSV y comanda imprimible.</li>
+          <li>Documentación, presentación y guía de publicación en GitHub Pages.</li>
+        </ul>
+        <h3>Fuera de alcance</h3>
+        <ul>
+          <li>Pasarela de pagos real (Yape, Plin o tarjeta).</li>
+          <li>Backend, base de datos centralizada y sincronización multiusuario.</li>
+          <li>Control de inventario por insumos o descuento automático de stock.</li>
+          <li>Aplicación móvil nativa, delivery y reparto a domicilio.</li>
+        </ul>
+      </section>
+
+      <section id="actores">
+        <span class="sobre">04 · Actores</span>
+        <h2>Quién hace qué en el sistema.</h2>
+        <div class="tabla-envoltura">
+          <table class="tabla-doc">
+            <thead><tr><th>Actor</th><th>Rol</th><th>Responsabilidades</th></tr></thead>
+            <tbody>
+              <tr><td>Cliente</td><td>Usuario final</td><td>Consulta el menú, personaliza su plato, confirma hora de recojo y pago, revisa su historial.</td></tr>
+              <tr><td>Administrador</td><td>Dueño o encargado</td><td>Verifica pagos, gestiona pedidos, organiza cocina, consulta clientes y actualiza menú/precios.</td></tr>
+              <tr><td>Cocina</td><td>Producción</td><td>Recibe la comanda digital, prepara el pedido y avanza el estado desde el tablero.</td></tr>
+              <tr><td>Sistema</td><td>Automatización</td><td>Calcula precios, asigna códigos, registra eventos, separa historiales y muestra información en tiempo real.</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <section id="requerimientos">
+        <span class="sobre">05 · Requerimientos</span>
+        <h2>Qué debe hacer el sistema.</h2>
+        <h3>Requerimientos funcionales</h3>
+        <div class="tabla-envoltura">
+          <table class="tabla-doc">
+            <thead><tr><th>ID</th><th>Requerimiento</th><th>Estado</th></tr></thead>
+            <tbody>
+              <tr><td>RF-01</td><td>Registrar clientes con nombre, correo, teléfono y contraseña.</td><td>Implementado</td></tr>
+              <tr><td>RF-02</td><td>Autenticar clientes y administradores por separado.</td><td>Implementado</td></tr>
+              <tr><td>RF-03</td><td>Mostrar menú por categorías con foto, descripción, precio y disponibilidad.</td><td>Implementado</td></tr>
+              <tr><td>RF-04</td><td>Personalizar acompañamientos (con / sin / extra) y recalcular el precio.</td><td>Implementado</td></tr>
+              <tr><td>RF-05</td><td>Gestionar carrito: agregar, quitar, cambiar cantidad y ver total.</td><td>Implementado</td></tr>
+              <tr><td>RF-06</td><td>Confirmar pedido con hora de recojo, teléfono, método de pago y nota.</td><td>Implementado</td></tr>
+              <tr><td>RF-07</td><td>Asignar código único y estado inicial al pedido.</td><td>Implementado</td></tr>
+              <tr><td>RF-08</td><td>Mostrar al cliente solo sus propios pedidos e historial.</td><td>Implementado</td></tr>
+              <tr><td>RF-09</td><td>Verificar pagos y marcarlos como pagados o pendientes.</td><td>Implementado</td></tr>
+              <tr><td>RF-10</td><td>Cambiar estado del pedido: recibido, en preparación, listo, entregado, cancelado.</td><td>Implementado</td></tr>
+              <tr><td>RF-11</td><td>Tablero de cocina ordenado por hora de recojo.</td><td>Implementado</td></tr>
+              <tr><td>RF-12</td><td>Consultar historial completo por cliente desde el panel.</td><td>Implementado</td></tr>
+              <tr><td>RF-13</td><td>Editar precio base y disponibilidad de productos.</td><td>Implementado</td></tr>
+              <tr><td>RF-14</td><td>Exportar pedidos filtrados a CSV.</td><td>Implementado</td></tr>
+              <tr><td>RF-15</td><td>Imprimir comanda de cocina en formato ticket.</td><td>Implementado</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <h3>Requerimientos no funcionales</h3>
+        <div class="tabla-envoltura">
+          <table class="tabla-doc">
+            <thead><tr><th>ID</th><th>Requerimiento</th><th>Cómo se atiende</th></tr></thead>
+            <tbody>
+              <tr><td>RNF-01</td><td>Usable desde celular y computadora.</td><td>Diseño responsive con CSS Grid/Flexbox y puntos de quiebre.</td></tr>
+              <tr><td>RNF-02</td><td>Sin instalación para el usuario.</td><td>Aplicación web estática accesible desde el navegador.</td></tr>
+              <tr><td>RNF-03</td><td>Despliegue simple y de bajo costo.</td><td>Compatible con GitHub Pages; no requiere backend para la demo.</td></tr>
+              <tr><td>RNF-04</td><td>Separación de información por cliente.</td><td>Cada pedido se asocia a <code>usuarioId</code> y el historial filtra por sesión.</td></tr>
+              <tr><td>RNF-05</td><td>Claridad de precios.</td><td>Desglose visible antes de confirmar y total guardado con el pedido.</td></tr>
+              <tr><td>RNF-06</td><td>Trazabilidad básica.</td><td>Eventos de creación, pago y cambio de estado con fecha.</td></tr>
+              <tr><td>RNF-07</td><td>Accesibilidad básica.</td><td>HTML semántico, etiquetas, foco visible, textos alternativos y navegación por teclado.</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <section id="arquitectura">
+        <span class="sobre">06 · Arquitectura</span>
+        <h2>Aplicación web estática en tres capas.</h2>
+        <p>El prototipo usa HTML, CSS y JavaScript vanilla. La lógica de negocio vive en <code>js/datos.js</code>; la interfaz del cliente en <code>js/cliente.js</code>; la del administrador en <code>js/admin.js</code>. La persistencia demo usa <code>localStorage</code>.</p>
+        <pre><code>Navegador
+├── index.html          → tienda del cliente
+├── admin.html          → panel de administración
+├── presentacion.html   → deck del proyecto
+├── documentacion.html  → este documento
+├── css/
+│   ├── estilos.css
+│   ├── presentacion.css
+│   └── documentacion.css
+├── js/
+│   ├── datos.js        → usuarios, productos, pedidos, precios, auth
+│   ├── ui.js           → modales, toasts, descargas
+│   ├── cliente.js      → menú, carrito, checkout, historial
+│   ├── admin.js        → KPIs, pedidos, cocina, clientes, menú
+│   └── presentacion.js → navegación del deck
+└── img/
+    ├── logo.svg
+    └── platos/         → fotos de productos</code></pre>
+        <h3>Decisiones de diseño</h3>
+        <div class="doc-grid">
+          <article class="doc-card"><strong>Sin backend para la demo</strong><p>Permite publicar en GitHub Pages y validar el flujo sin infraestructura. Es una limitación consciente, no un olvido.</p></article>
+          <article class="doc-card"><strong>Una sola capa de datos</strong><p>Todo el acceso a usuarios, productos y pedidos pasa por <code>PB</code>, lo que facilita reemplazar <code>localStorage</code> por una API.</p></article>
+          <article class="doc-card"><strong>Dos interfaces separadas</strong><p>El cliente nunca ve el panel. El administrador tiene login y navegación propios, con estilos y prioridades distintas.</p></article>
+          <article class="doc-card"><strong>Precio como regla central</strong><p>El cálculo se hace en una única función y se guarda con el pedido para que no cambie si luego se edita el menú.</p></article>
+        </div>
+      </section>
+
+      <section id="datos">
+        <span class="sobre">07 · Datos</span>
+        <h2>Modelo de datos de la demo.</h2>
+        <p>Las entidades se guardan como arreglos JSON en <code>localStorage</code>. Los nombres de claves están versionados para facilitar una futura migración.</p>
+        <div class="tabla-envoltura">
+          <table class="tabla-doc">
+            <thead><tr><th>Entidad</th><th>Clave</th><th>Campos principales</th></tr></thead>
+            <tbody>
+              <tr><td>Usuarios</td><td><code>pb_usuarios_v1</code></td><td>id, nombre, usuario, correo, teléfono, passwordHash, rol, creadoEn.</td></tr>
+              <tr><td>Productos</td><td><code>pb_productos_v1</code></td><td>id, nombre, categoría, precio, imagen, descripción, customizable, disponible, etiqueta.</td></tr>
+              <tr><td>Pedidos</td><td><code>pb_pedidos_v1</code></td><td>id, código, usuarioId, cliente, items, total, métodoPago, estadoPago, estado, fechas, nota, eventos.</td></tr>
+              <tr><td>Sesión cliente</td><td><code>pb_sesion_cliente_v1</code></td><td>ID del usuario autenticado en la tienda.</td></tr>
+              <tr><td>Sesión admin</td><td><code>pb_sesion_admin_v1</code></td><td>ID del administrador autenticado en el panel.</td></tr>
+              <tr><td>Contador</td><td><code>pb_contador_v1</code></td><td>Último número de pedido para generar códigos PB-000X.</td></tr>
+              <tr><td>Carrito</td><td><code>pb_carrito_v1</code></td><td>Líneas del pedido en construcción, persistidas entre visitas.</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <h3>Estados del pedido</h3>
+        <div class="tabla-envoltura">
+          <table class="tabla-doc">
+            <thead><tr><th>Estado</th><th>Significado</th><th>Siguiente</th></tr></thead>
+            <tbody>
+              <tr><td>pendiente</td><td>Pedido recibido, aún no iniciado en cocina.</td><td>en_preparacion</td></tr>
+              <tr><td>en_preparacion</td><td>La cocina está preparando el pedido.</td><td>listo</td></tr>
+              <tr><td>listo</td><td>Listo para recoger en tienda.</td><td>entregado</td></tr>
+              <tr><td>entregado</td><td>El cliente recogió el pedido.</td><td>—</td></tr>
+              <tr><td>cancelado</td><td>Pedido anulado; queda en trazabilidad.</td><td>—</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <section id="reglas">
+        <span class="sobre">08 · Reglas de negocio</span>
+        <h2>El motor de precios.</h2>
+        <p>El precio base de cada producto incluye arroz, papa frita, ensalada y cremas. Los ajustes se aplican por acompañamiento y el total se redondea a dos decimales.</p>
+        <div class="tabla-envoltura">
+          <table class="tabla-doc">
+            <thead><tr><th>Producto / ajuste</th><th>Precio</th></tr></thead>
+            <tbody>
+              <tr><td>Pelícano de pollo completo</td><td>S/ 14.00</td></tr>
+              <tr><td>Pelícano de carne completo</td><td>S/ 16.00</td></tr>
+              <tr><td>Pelícano mixto completo</td><td>S/ 18.00</td></tr>
+              <tr><td>Sin arroz / sin papa / sin ensalada</td><td>− S/ 2.00 cada uno</td></tr>
+              <tr><td>Sin cremas de la casa</td><td>− S/ 1.00</td></tr>
+              <tr><td>Extra de arroz / papa / ensalada</td><td>+ S/ 2.00 cada uno</td></tr>
+              <tr><td>Extra de cremas</td><td>+ S/ 1.00</td></tr>
+              <tr><td>Chicha morada 1 L</td><td>S/ 6.00</td></tr>
+              <tr><td>Inca Kola 500 ml</td><td>S/ 4.00</td></tr>
+              <tr><td>Agua mineral 625 ml</td><td>S/ 2.50</td></tr>
+              <tr><td>Porción extra de papa</td><td>S/ 3.00</td></tr>
+              <tr><td>Crema extra</td><td>S/ 1.00</td></tr>
+              <tr><td>Ensalada extra</td><td>S/ 2.00</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="aviso">
+          <strong>Ejemplo verificable</strong>
+          2 × Pelícano de pollo sin arroz = 2 × (14.00 − 2.00) = <strong>S/ 24.00</strong>. El desglose se muestra en el modal antes de agregar al carrito.
+        </div>
+        <h3>Otras reglas</h3>
+        <ul>
+          <li>La hora de recojo debe tener al menos 10 minutos de anticipación.</li>
+          <li>El pedido nace como <strong>pendiente</strong> y con pago <strong>pendiente</strong>.</li>
+          <li>El administrador es el único que verifica pagos y cambia estados.</li>
+          <li>Un pedido cancelado no suma en ventas ni en totales históricos.</li>
+          <li>Los precios y la disponibilidad se pueden editar, pero no alteran pedidos ya registrados.</li>
+          <li>El cliente solo accede a pedidos cuyo <code>usuarioId</code> coincide con su sesión.</li>
+        </ul>
+      </section>
+
+      <section id="flujo-cliente">
+        <span class="sobre">09 · Flujo cliente</span>
+        <h2>De la tienda al código de recojo.</h2>
+        <div class="doc-flujo">
+          <div class="doc-flujo-paso"><span>1</span><div><strong>Explorar el menú</strong><small>Filtros por categoría: Pelicanos, Bebidas y Extras. Cada producto muestra foto, descripción y precio.</small></div></div>
+          <div class="doc-flujo-paso"><span>2</span><div><strong>Personalizar</strong><small>El cliente elige con / sin / extra para arroz, papa, ensalada y cremas. El precio se actualiza al instante.</small></div></div>
+          <div class="doc-flujo-paso"><span>3</span><div><strong>Agregar al carrito</strong><small>Puede sumar unidades, quitar líneas y ver subtotal y total. El carrito se guarda en el navegador.</small></div></div>
+          <div class="doc-flujo-paso"><span>4</span><div><strong>Ingresar o registrarse</strong><small>Si no hay sesión, el checkout solicita login. La cuenta asocia el pedido al cliente.</small></div></div>
+          <div class="doc-flujo-paso"><span>5</span><div><strong>Confirmar recojo y pago</strong><small>Teléfono, fecha/hora de recojo, método de pago y nota para cocina.</small></div></div>
+          <div class="doc-flujo-paso"><span>6</span><div><strong>Recibir código</strong><small>El sistema genera un código PB-000X y muestra el resumen. El pedido aparece en “Mis pedidos”.</small></div></div>
+          <div class="doc-flujo-paso"><span>7</span><div><strong>Seguir el estado</strong><small>El cliente puede actualizar y ver si está recibido, en preparación, listo o entregado.</small></div></div>
+        </div>
+      </section>
+
+      <section id="flujo-admin">
+        <span class="sobre">10 · Flujo administrador</span>
+        <h2>El panel que reemplaza el cuaderno.</h2>
+        <p>El administrador ingresa con usuario y contraseña. El panel tiene cinco secciones y actualiza la información cada 30 segundos mientras está visible.</p>
+        <div class="doc-grid">
+          <article class="doc-card"><span class="icono" aria-hidden="true">📊</span><strong>Resumen</strong><p>Pedidos del día, recojos próximos, ventas pagadas, por cobrar y clientes con pedidos.</p></article>
+          <article class="doc-card"><span class="icono" aria-hidden="true">🧾</span><strong>Pedidos</strong><p>Búsqueda por código/cliente/correo/teléfono, filtros por estado, pago y fecha. Exportación CSV.</p></article>
+          <article class="doc-card"><span class="icono" aria-hidden="true">🔥</span><strong>Cocina</strong><p>Tres columnas: por preparar, en preparación y listos. Botón para avanzar el estado.</p></article>
+          <article class="doc-card"><span class="icono" aria-hidden="true">👥</span><strong>Clientes</strong><p>Listado con pedidos, total pagado y último pedido. Historial completo en un modal.</p></article>
+          <article class="doc-card"><span class="icono" aria-hidden="true">🍽️</span><strong>Menú</strong><p>Edición de precio base y disponibilidad. Restauración del menú original.</p></article>
+          <article class="doc-card"><span class="icono" aria-hidden="true">🖨️</span><strong>Comanda</strong><p>Ticket imprimible con código, hora de recojo, detalle, notas y estado de pago.</p></article>
+        </div>
+        <h3>Verificación de pago</h3>
+        <p>El cliente declara efectivo, Yape, Plin o transferencia. El sistema no cobra: registra el método y deja el pago como <strong>pendiente</strong>. El administrador lo verifica y lo marca como <strong>pagado</strong> desde la tabla o el detalle del pedido.</p>
+      </section>
+
+      <section id="seguridad">
+        <span class="sobre">11 · Seguridad</span>
+        <h2>Qué protege la demo y qué no.</h2>
+        <p>La demo separa sesiones de cliente y administrador, valida roles y filtra el historial por <code>usuarioId</code>. Sin embargo, al ser una aplicación estática, no debe usarse con datos reales.</p>
+        <div class="aviso aviso-rojo">
+          <strong>Limitación importante</strong>
+          Las contraseñas se transforman con un hash demostrativo en el navegador. No es bcrypt, Argon2 ni un esquema seguro para producción. Toda la información vive en <code>localStorage</code> y puede ser leída o modificada por el usuario.
+        </div>
+        <div class="tabla-envoltura">
+          <table class="tabla-doc">
+            <thead><tr><th>Aspecto</th><th>Demo</th><th>Producción recomendada</th></tr></thead>
+            <tbody>
+              <tr><td>Autenticación</td><td>Hash demostrativo + sesión local</td><td>Servidor con bcrypt/Argon2, cookies HttpOnly y expiración.</td></tr>
+              <tr><td>Autorización</td><td>Validación de rol en el cliente</td><td>Validación en cada endpoint del servidor.</td></tr>
+              <tr><td>Datos</td><td><code>localStorage</code> del navegador</td><td>Base de datos relacional con respaldo y auditoría.</td></tr>
+              <tr><td>Pagos</td><td>Declaración y verificación manual</td><td>Pasarela certificada y conciliación automática.</td></tr>
+              <tr><td>Privacidad</td><td>Filtro por usuario en el cliente</td><td>Consultas parametrizadas y aislamiento por tenant/usuario.</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <section id="credenciales">
+        <span class="sobre">12 · Demo</span>
+        <h2>Usuarios y contraseñas de prueba.</h2>
+        <p>Las cuentas se crean automáticamente la primera vez que se abre la aplicación en un navegador. Si necesitas reiniciar la demo, borra los datos del sitio o ejecuta <code>localStorage.clear()</code> en la consola.</p>
+        <div class="credenciales-doc">
+          <article class="credencial-doc">
+            <h3>🛠️ Administrador</h3>
+            <dl>
+              <dt>Usuario</dt><dd>admin</dd>
+              <dt>Contraseña</dt><dd>Admin2026*</dd>
+              <dt>Acceso</dt><dd>admin.html</dd>
+            </dl>
+            <p>Puede ver todos los pedidos, verificar pagos, cambiar estados, consultar clientes y editar el menú.</p>
+          </article>
+          <article class="credencial-doc">
+            <h3>👤 Cliente María</h3>
+            <dl>
+              <dt>Usuario</dt><dd>maria</dd>
+              <dt>Correo</dt><dd>maria@demo.pe</dd>
+              <dt>Contraseña</dt><dd>Cliente2026*</dd>
+            </dl>
+            <p>Tiene pedidos de ejemplo: uno pendiente y uno entregado. Su historial no se mezcla con el de Juan.</p>
+          </article>
+          <article class="credencial-doc">
+            <h3>👤 Cliente Juan</h3>
+            <dl>
+              <dt>Usuario</dt><dd>juan</dd>
+              <dt>Correo</dt><dd>juan@demo.pe</dd>
+              <dt>Contraseña</dt><dd>Cliente2026*</dd>
+            </dl>
+            <p>Tiene un pedido en preparación y uno entregado. Sirve para comprobar el aislamiento de historiales.</p>
+          </article>
+          <article class="credencial-doc">
+            <h3>🧪 Cuenta nueva</h3>
+            <dl>
+              <dt>Acceso</dt><dd>“Crear cuenta” en la tienda</dd>
+              <dt>Requisitos</dt><dd>Nombre, correo, teléfono y contraseña de 6+ caracteres</dd>
+            </dl>
+            <p>La cuenta nueva empieza sin pedidos. El historial se llena a medida que el cliente compra.</p>
+          </article>
+        </div>
+        <p><a href="docs/CREDENCIALES.md">Ver también el archivo CREDENCIALES.md →</a></p>
+      </section>
+
+      <section id="pruebas">
+        <span class="sobre">13 · Pruebas</span>
+        <h2>Qué se debe validar en la demo.</h2>
+        <div class="tabla-envoltura">
+          <table class="tabla-doc">
+            <thead><tr><th>#</th><th>Caso de prueba</th><th>Resultado esperado</th></tr></thead>
+            <tbody>
+              <tr><td>01</td><td>Iniciar sesión con <code>maria</code> / <code>Cliente2026*</code>.</td><td>La tienda saluda a María y muestra su historial.</td></tr>
+              <tr><td>02</td><td>Iniciar sesión con <code>juan</code>.</td><td>El historial cambia y no muestra los pedidos de María.</td></tr>
+              <tr><td>03</td><td>Personalizar un pollo sin arroz y agregarlo.</td><td>El precio unitario baja a S/ 12.00 y el carrito lo refleja.</td></tr>
+              <tr><td>04</td><td>Quitar papa y ensalada del mismo plato.</td><td>El precio baja S/ 4.00 adicionales (S/ 8.00 en total).</td></tr>
+              <tr><td>05</td><td>Confirmar pedido con recojo válido.</td><td>Se genera un código PB-000X y aparece en “Mis pedidos”.</td></tr>
+              <tr><td>06</td><td>Intentar confirmar con recojo en 5 minutos.</td><td>El sistema muestra error de anticipación mínima.</td></tr>
+              <tr><td>07</td><td>Entrar a <code>admin.html</code> con <code>admin</code> / <code>Admin2026*</code>.</td><td>Se abre el panel con KPIs y pedidos.</td></tr>
+              <tr><td>08</td><td>Marcar un pedido como pagado.</td><td>El estado cambia y el cliente lo ve al actualizar.</td></tr>
+              <tr><td>09</td><td>Avanzar una comanda en Cocina.</td><td>El pedido pasa de recibido a preparación, listo y entregado.</td></tr>
+              <tr><td>10</td><td>Marcar un producto como agotado en Menú.</td><td>La tienda lo muestra como agotado y no permite agregarlo.</td></tr>
+              <tr><td>11</td><td>Exportar CSV con filtros.</td><td>Se descarga un archivo con los pedidos filtrados.</td></tr>
+              <tr><td>12</td><td>Imprimir una comanda.</td><td>Se abre una ventana con el ticket y el diálogo de impresión.</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <section id="despliegue">
+        <span class="sobre">14 · Despliegue</span>
+        <h2>Publicar en GitHub Pages.</h2>
+        <p>La carpeta <code>pelicanos-bros/</code> está preparada para subirse como repositorio. No requiere compilación ni servidor. El archivo <code>.nojekyll</code> evita que GitHub procese la carpeta con Jekyll.</p>
+        <h3>Pasos rápidos</h3>
+        <div class="doc-flujo">
+          <div class="doc-flujo-paso"><span>1</span><div><strong>Crear el repositorio</strong><small>En GitHub, crea un repositorio vacío llamado, por ejemplo, <code>pelicanos-bros</code>.</small></div></div>
+          <div class="doc-flujo-paso"><span>2</span><div><strong>Subir el contenido</strong><small>Sube los archivos de dentro de la carpeta <code>pelicanos-bros/</code>, no la carpeta contenedora.</small></div></div>
+          <div class="doc-flujo-paso"><span>3</span><div><strong>Activar Pages</strong><small>Settings → Pages → Source: “Deploy from a branch” → Branch: <code>main</code> / root → Save.</small></div></div>
+          <div class="doc-flujo-paso"><span>4</span><div><strong>Abrir la URL</strong><small>GitHub publicará en <code>https://TU-USUARIO.github.io/pelicanos-bros/</code>.</small></div></div>
+        </div>
+        <div class="aviso">
+          <strong>Importante</strong>
+          No abras la app con doble clic desde <code>file://</code> si vas a probar sesiones y pedidos: algunos navegadores aíslan <code>localStorage</code> por archivo. Usa GitHub Pages o un servidor local como <code>python -m http.server</code>.
+        </div>
+        <p>La guía completa está en <a href="docs/GUIA_GITHUB.md">docs/GUIA_GITHUB.md</a>.</p>
+      </section>
+
+      <section id="limitaciones">
+        <span class="sobre">15 · Límites y futuro</span>
+        <h2>Lo que esta demo no resuelve todavía.</h2>
+        <div class="doc-grid">
+          <article class="doc-card"><strong>Sin sincronización real</strong><p>Dos dispositivos no comparten pedidos. Cada navegador tiene su propia copia de los datos.</p></article>
+          <article class="doc-card"><strong>Sin inventario por insumos</strong><p>La disponibilidad es un interruptor manual por producto; no descuenta stock automáticamente.</p></article>
+          <article class="doc-card"><strong>Pagos no integrados</strong><p>Yape, Plin y transferencia se declaran. La verificación es manual por el administrador.</p></article>
+          <article class="doc-card"><strong>Seguridad demostrativa</strong><p>El hash y la sesión son locales. No aptos para producción sin backend y HTTPS.</p></article>
+        </div>
+        <h3>Hoja de ruta sugerida</h3>
+        <ol>
+          <li>Validar los supuestos del AS-IS con la gerencia de Pelícanos Bros.</li>
+          <li>Diseñar una base de datos relacional: usuarios, productos, pedidos, detalle_pedido, pagos y eventos.</li>
+          <li>Construir una API con autenticación robusta y roles.</li>
+          <li>Integrar una pasarela de pagos y conciliación automática.</li>
+          <li>Agregar inventario por insumos y alertas de stock.</li>
+          <li>Incorporar reportes históricos y métricas de demanda perdida.</li>
+        </ol>
+      </section>
+
+      <section id="creditos">
+        <span class="sobre">16 · Créditos</span>
+        <h2>Fotografías y recursos.</h2>
+        <p>Las diez fotografías del menú provienen de Wikimedia Commons y se usan con fines académicos. Fueron recortadas, redimensionadas y optimizadas; conserva la atribución y enlaza a la página de cada archivo si publicas el proyecto. Las licencias CC BY-SA exigen compartir las adaptaciones bajo la misma licencia.</p>
+        <div class="creditos-grid">
+          <div class="credito"><img src="img/platos/pollo.jpg" alt=""><div><strong>Pollo al carbón</strong><span><a href="https://commons.wikimedia.org/wiki/File:Pollo_a_la_brasa_con_arroz.jpg" target="_blank" rel="noopener">MiguelAlanCS</a> · CC BY-SA 4.0</span></div></div>
+          <div class="credito"><img src="img/platos/carne.jpg" alt=""><div><strong>Carne de res</strong><span><a href="https://commons.wikimedia.org/wiki/File:Lomo_Salteado.jpg" target="_blank" rel="noopener">PapiPijuan</a> · CC BY-SA 4.0</span></div></div>
+          <div class="credito"><img src="img/platos/mixto.jpg" alt=""><div><strong>Pelícano mixto</strong><span><a href="https://commons.wikimedia.org/wiki/File:Mixto_dos_carnes.jpg" target="_blank" rel="noopener">PapiPijuan</a> · CC BY-SA 4.0</span></div></div>
+          <div class="credito"><img src="img/platos/pollo2.jpg" alt=""><div><strong>Pollo a la brasa</strong><span><a href="https://commons.wikimedia.org/wiki/File:Pollo_a_la_brasa_peruano.jpg" target="_blank" rel="noopener">Manuel González Olaechea y Franco</a> · CC BY-SA 3.0</span></div></div>
+          <div class="credito"><img src="img/platos/papas.jpg" alt=""><div><strong>Papas fritas</strong><span><a href="https://commons.wikimedia.org/wiki/File:Papas_fritas_caseras.jpg" target="_blank" rel="noopener">Horacio Cambeiro</a> · CC BY-SA 3.0</span></div></div>
+          <div class="credito"><img src="img/platos/ensalada.jpg" alt=""><div><strong>Ensalada</strong><span><a href="https://commons.wikimedia.org/wiki/File:Ensalada_de_lechuga,_tomate_y_pepinos.jpg" target="_blank" rel="noopener">Horacio Cambeiro</a> · CC BY-SA 4.0</span></div></div>
+          <div class="credito"><img src="img/platos/cremas.jpg" alt=""><div><strong>Cremas de la casa</strong><span><a href="https://commons.wikimedia.org/wiki/File:Cremas_del_Pollo_a_la_Brasa_(Peru).JPG" target="_blank" rel="noopener">Dtarazona</a> · CC BY-SA 3.0</span></div></div>
+          <div class="credito"><img src="img/platos/chicha.jpg" alt=""><div><strong>Chicha morada</strong><span><a href="https://commons.wikimedia.org/wiki/File:Chicha_Morada_2017.jpg" target="_blank" rel="noopener">young shanahan</a> · CC BY 2.0</span></div></div>
+          <div class="credito"><img src="img/platos/incakola.jpg" alt=""><div><strong>Inca Kola</strong><span><a href="https://commons.wikimedia.org/wiki/File:IncaKolaBottleGlass.jpg" target="_blank" rel="noopener">Markus Leupold-Löwenthal</a> · CC BY-SA 3.0</span></div></div>
+          <div class="credito"><img src="img/platos/agua.jpg" alt=""><div><strong>Agua mineral</strong><span><a href="https://commons.wikimedia.org/wiki/File:Botella_de_Agua_de_Solares.jpg" target="_blank" rel="noopener">Goldorak</a> · CC BY-SA 4.0</span></div></div>
+        </div>
+        <p>Consulta el detalle, los enlaces y los textos completos de las licencias en <a href="docs/CREDITOS.md">docs/CREDITOS.md</a>. El logo es una ilustración vectorial propia del proyecto.</p>
+        <p><strong>Tipografías:</strong> Fraunces y Outfit, disponibles en Google Fonts bajo SIL Open Font License.</p>
+      </section>
+
+      <section id="conclusiones">
+        <span class="sobre">17 · Cierre</span>
+        <h2>La claridad digital empieza por el proceso.</h2>
+        <p>El proyecto demuestra que Pelícanos Bros no necesita una transformación tecnológica enorme para mejorar: necesita quitarle al cajero la carga de memorizar, calcular y registrar a mano. El prototipo enseña un camino viable, medible y de bajo costo para hacerlo.</p>
+        <p>La automatización es quirúrgica: digitaliza la venta y la trazabilidad, pero mantiene la cocina artesanal y el contacto humano. Esa es, probablemente, la decisión más importante del diseño.</p>
+        <div class="aviso aviso-verde">
+          <strong>Próximo paso</strong>
+          Validar la demo con el negocio, ajustar las reglas de precios y recojo, y recién entonces invertir en backend, base de datos y pagos integrados.
+        </div>
+      </section>
+
+    </main>
+  </div>
+
+  <footer class="doc-pie">
+    <div class="doc-pie-inner">
+      <span>© 2026 Pelícanos Bros · Proyecto de Ingeniería de Software · UNAM</span>
+      <span><a href="index.html">Tienda</a> · <a href="admin.html">Panel</a> · <a href="presentacion.html">Presentación</a> · <a href="docs/DOCUMENTACION.md">Versión Markdown</a></span>
+    </div>
+  </footer>
+
+</body>
+</html>
